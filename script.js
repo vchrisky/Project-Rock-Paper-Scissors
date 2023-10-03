@@ -54,10 +54,11 @@ function playRound(pSelection, cSelection) {
 
 function game(){
     for (let i = 0; (playerScore < 5 && computerScore < 5); i++) {
-        let playerSelection = prompt("Choose! Rock, Paper, or Scissors", "Rock").toLowerCase();
+        let playerOption = prompt("Choose! Rock, Paper, or Scissors", "Rock");
+        let playerSelection = playerOption.toLowerCase();
         let computerSelection = getComputerChoice();
 
-        console.log(`You chose ${playerSelection} and Computer chose ${computerSelection}`);
+        console.log(`You chose ${playerOption} and Computer chose ${computerSelection}`);
         console.log(playRound(playerSelection, computerSelection));
         console.log(`Player: ${playerScore} Computer: ${computerScore}`);
         if (playerScore == 5){
