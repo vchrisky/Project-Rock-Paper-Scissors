@@ -16,7 +16,7 @@ let playerScore = 0;
 
 function playRound(pSelection, cSelection) {
 
-    if (pSelection == "rock"){
+    if (pSelection == "Rock"){
         if (cSelection == "Paper"){
             computerScore++;
             return "You Lose! Paper covers Rock";
@@ -26,7 +26,7 @@ function playRound(pSelection, cSelection) {
         }else if (cSelection == "Rock"){
             return "You Draw! Try Again";
         }
-    }else if (pSelection == "paper"){
+    }else if (pSelection == "Paper"){
         if (cSelection == "Rock"){
             playerScore++;
             return "You Win! Paper covers Rock";
@@ -36,7 +36,7 @@ function playRound(pSelection, cSelection) {
         }else if(cSelection == "Paper"){
             return "You Draw! Try Again";
         }
-    }else if (pSelection == "scissors"){
+    }else if (pSelection == "Scissors"){
         if (cSelection == "Rock"){
             computerScore++;
             return "You Lose! Rock breaks Scissors";
@@ -52,7 +52,7 @@ function playRound(pSelection, cSelection) {
 }
 
 
-function game(){
+/*function game(){
     for (let i = 0; (playerScore < 5 && computerScore < 5); i++) {
         let playerOption = prompt("Choose! Rock, Paper, or Scissors", "Rock");
         let playerSelection = playerOption.toLowerCase();
@@ -69,4 +69,77 @@ function game(){
     }
 }
 
-console.log(game());
+console.log(game());*/
+const btnContainer = document.getElementById('buttons');
+const results = document.createElement("div");
+
+const rock = document.createElement("button");
+const paper = document.createElement("button");
+const scissors = document.createElement("button");
+const reload = document.createElement("button");
+
+btnContainer.appendChild(rock);
+btnContainer.appendChild(paper);
+btnContainer.appendChild(scissors);
+btnContainer.appendChild(reload);
+document.body.appendChild(results);
+
+
+rock.innerText = "ROCK";
+paper.textContent = "PAPER";
+scissors.textContent = "SCISSORS";
+reload.textContent = "RELOAD";
+
+let displayChoice = document.createElement('div');
+let displayResult = document.createElement('div');
+let displayScore = document.createElement('div');
+results.appendChild(displayChoice);
+results.appendChild(displayResult);
+results.appendChild(displayScore);
+
+displayScore.textContent = `Player: ${playerScore} Computer: ${computerScore}`;
+
+
+rock.addEventListener("click", () => {
+    let computerSelection = getComputerChoice();
+
+    if (playerScore == 5){
+        results.textContent = "**Congratulations! You won Five rounds.**";
+    }else if(computerScore == 5){
+        results.textContent = "**You Lost! Computer won Five rounds.**";
+    }else{
+        displayChoice.textContent = `You chose Rock and Computer chose ${computerSelection}`;
+        displayResult.textContent = playRound("Rock", computerSelection);
+        displayScore.textContent = `Player: ${playerScore} Computer: ${computerScore}`;
+    }
+        
+});
+paper.addEventListener("click", () => {
+    let computerSelection = getComputerChoice();
+
+    if (playerScore == 5){
+        results.textContent = "**Congratulations! You won Five rounds.**";
+    }else if(computerScore == 5){
+        results.textContent = "**You Lost! Computer won Five rounds.**";
+    }else{
+        displayChoice.textContent = `You chose Paper and Computer chose ${computerSelection}`;
+        displayResult.textContent = playRound("Paper", computerSelection);
+        displayScore.textContent = `Player: ${playerScore} Computer: ${computerScore}`;
+    }
+});
+scissors.addEventListener("click", () => {
+    let computerSelection = getComputerChoice();
+
+    if (playerScore == 5){
+        results.textContent = "**Congratulations! You won Five rounds.**";
+    }else if(computerScore == 5){
+        results.textContent = "**You Lost! Computer won Five rounds.**";
+    }else{
+        displayChoice.textContent = `You chose Scissors and Computer chose ${computerSelection}`;
+        displayResult.textContent = playRound("Scissors", computerSelection);
+        displayScore.textContent = `Player: ${playerScore} Computer: ${computerScore}`;
+    }
+});
+reload.addEventListener("click", () => {
+    reload.innerHTML = "<a href='#index.html'>Reload</a>";
+})
